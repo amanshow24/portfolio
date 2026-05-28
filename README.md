@@ -1,6 +1,6 @@
 # Aman Kumar Show — Portfolio
 
-Personal portfolio built with React, TypeScript, Vite, and Tailwind CSS.
+A modern, responsive personal portfolio showcasing projects, experience, and contact information. Built with React, TypeScript, Vite and Tailwind CSS — optimized with code-splitting, SEO-friendly metadata, and ready for static hosting on Vercel.
 
 ## Requirements
 - Node.js >= 20.19.0 (see `engines` in `package.json`)
