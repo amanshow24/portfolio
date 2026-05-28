@@ -100,7 +100,7 @@ export default function About() {
             <h2 className="text-4xl font-black text-foreground mb-4 uppercase">Education & Growth</h2>
             <div className="w-24 h-1.5 bg-foreground mx-auto mb-4" />
             <p className="text-muted-foreground text-md sm:text-lg max-w-2xl mx-auto font-medium">
-              An unconventional path — from medicine to code, shaped by resilience and curiosity.
+              A deliberate move into software, shaped by continuous learning and problem‑solving.
             </p>
           </div>
         </FadeIn>
