@@ -28,9 +28,9 @@ const educationJourney = [
 ];
 
 const quickStats = [
-  { value: "6+", label: "Projects Built", accent: "text-foreground" },
+  { value: "12+", label: "Projects Built", accent: "text-foreground" },
     { value: "4+", label: "Achievements", accent: "text-foreground" },
-    { value: "1+", label: "Years Building", accent: "text-foreground" },
+    { value: "2+", label: "Years Building", accent: "text-foreground" },
 ];
 
 export default function About() {
