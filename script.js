@@ -26,7 +26,14 @@ if ("IntersectionObserver" in window) {
 // the counter and gets back the running total. No backend or signup
 // required. Keys are global/public here, so KEY must be unique to this
 // site to avoid colliding with someone else's counter.
-(function initVisitCounter() {
+//
+// This call is deliberately deferred until the `load` event. The
+// countapi service can be slow (1-2s+), and firing it immediately makes
+// Lighthouse treat it as part of the page's critical network path,
+// hurting the Performance score even though it has nothing to do with
+// what the visitor actually sees. Waiting for `load` lets the real page
+// content finish first — the number just pops in a moment later.
+function initVisitCounter() {
   const countEl = document.getElementById("visit-count");
   if (!countEl) return;
 
@@ -44,4 +51,10 @@ if ("IntersectionObserver" in window) {
       // Fail quietly — don't let a broken counter service break the page
       countEl.parentElement.style.display = "none";
     });
-})();
+}
+
+if (document.readyState === "complete") {
+  initVisitCounter();
+} else {
+  window.addEventListener("load", initVisitCounter);
+}
