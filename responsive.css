@@ -1,0 +1,177 @@
+/* ==========================================================================
+   Responsive layout — tablet and phone breakpoints
+   Load this AFTER style.css so these rules can override the base styles.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Tablet — 781px to 1024px
+   Slightly narrower layout, tighter gaps, sidebar stays alongside content
+   until it gets too cramped.
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .page {
+    padding: 80px 28px 56px;
+  }
+
+  .layout {
+    gap: 48px;
+  }
+
+  .main-col {
+    gap: 48px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Small tablet / large phone — 481px to 780px
+   Sidebar drops above the main content, single column.
+   -------------------------------------------------------------------------- */
+@media (max-width: 780px) {
+  .page {
+    padding: 56px 20px 48px;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .main-col {
+    gap: 44px;
+  }
+
+  .main-col .block:first-of-type {
+    margin-top: 0;
+  }
+
+  .side-col {
+    order: -1;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .intro h1 {
+    font-size: 32px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Phone — up to 480px
+   Tightest spacing, stacked buttons, smaller type, single-column lists.
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  body {
+    font-size: 16px;
+  }
+
+  .page {
+    padding: 40px 16px 40px;
+  }
+
+  .layout {
+    gap: 32px;
+  }
+
+  .main-col {
+    gap: 36px;
+  }
+
+  .intro h1 {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+
+  .intro-text {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  /* Stack the CTA buttons full-width instead of side by side */
+  .intro {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .talk-btn,
+  .resume-btn {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .resume-btn {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .block h2,
+  .side-col h2 {
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+
+  .list {
+    gap: 22px;
+  }
+
+  .item-title {
+    font-size: 16px;
+  }
+
+  .item-meta {
+    font-size: 13px;
+  }
+
+  /* Plain lists (Skills, Links) wrap to one item per row for easier tapping */
+  .list.plain {
+    gap: 14px;
+  }
+
+  .list.plain li {
+    flex-direction: column;
+    gap: 4px;
+    font-size: 15px;
+  }
+
+  .about-card {
+    align-items: center;
+    text-align: center;
+  }
+
+  .about-card p {
+    font-size: 15px;
+  }
+
+  .avatar {
+    width: 84px;
+    height: 84px;
+  }
+
+  .links {
+    text-align: center;
+  }
+
+  .footer {
+    margin-top: 64px;
+    font-size: 13px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Extra-small phones — up to 360px
+   -------------------------------------------------------------------------- */
+@media (max-width: 360px) {
+  .page {
+    padding: 32px 14px 32px;
+  }
+
+  .intro h1 {
+    font-size: 25px;
+  }
+
+  .talk-btn,
+  .resume-btn {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+}

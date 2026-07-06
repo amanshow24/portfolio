@@ -258,32 +258,6 @@ a {
   transform: translateY(0);
 }
 
-/* Responsive */
-@media (max-width: 780px) {
-  .page {
-    padding: 56px 20px 48px;
-  }
-
-  .layout {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .main-col .block:first-of-type {
-    margin-top: 0;
-  }
-
-  .side-col {
-    order: -1;
-    padding-bottom: 32px;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .intro h1 {
-    font-size: 32px;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
