@@ -236,6 +236,16 @@ a {
   color: var(--muted);
 }
 
+.footer p {
+  margin: 0;
+}
+
+/* Visit counter */
+.visit-counter {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
 /* Fade-in on scroll */
 .fade-in {
   opacity: 0;
