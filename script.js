@@ -1,60 +1,58 @@
-// Simple scroll-triggered fade-in for sections
-const fadeEls = document.querySelectorAll(".fade-in");
+// Theme toggle (light is default; preference is remembered)
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('themeToggle');
+  if (!btn) return;
 
-if ("IntersectionObserver" in window) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
-  );
+  function applyIcon() {
+    var theme = root.getAttribute('data-theme') || 'dark';
+    btn.textContent = theme === 'light' ? '🌙' : '☀️';
+    btn.setAttribute('aria-label', theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
+  }
 
-  fadeEls.forEach((el) => observer.observe(el));
-} else {
-  // Fallback: just show everything
-  fadeEls.forEach((el) => el.classList.add("is-visible"));
-}
+  applyIcon();
 
-// Visit counter
-// Uses countapi.mileshilliard.com, a free maintained counter service
-// (the original countapi.xyz was discontinued). Every page load "hits"
-// the counter and gets back the running total. No backend or signup
-// required. Keys are global/public here, so KEY must be unique to this
-// site to avoid colliding with someone else's counter.
-//
-// This call is deliberately deferred until the `load` event. The
-// countapi service can be slow (1-2s+), and firing it immediately makes
-// Lighthouse treat it as part of the page's critical network path,
-// hurting the Performance score even though it has nothing to do with
-// what the visitor actually sees. Waiting for `load` lets the real page
-// content finish first — the number just pops in a moment later.
-function initVisitCounter() {
-  const countEl = document.getElementById("visit-count");
-  if (!countEl) return;
+  btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    applyIcon();
+  });
+})();
 
-  const KEY = "amanshow-me-portfolio-visits-a1k2s3";
+// Mobile nav toggle
+var toggle = document.getElementById('navToggle');
+var links = document.getElementById('navLinks');
 
-  fetch(`https://countapi.mileshilliard.com/api/v1/hit/${KEY}`)
-    .then((res) => {
-      if (!res.ok) throw new Error("Counter request failed");
-      return res.json();
-    })
-    .then((data) => {
-      countEl.textContent = Number(data.value).toLocaleString();
-    })
-    .catch(() => {
-      // Fail quietly — don't let a broken counter service break the page
-      countEl.parentElement.style.display = "none";
+if (toggle && links) {
+  toggle.addEventListener('click', function () {
+    var open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  links.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
     });
+  });
 }
 
-if (document.readyState === "complete") {
-  initVisitCounter();
-} else {
-  window.addEventListener("load", initVisitCounter);
-}
+// Visit counter (CountAPI, with a local fallback if the request fails)
+(function () {
+  var el = document.getElementById('visit-count');
+  if (!el) return;
+
+  var NAMESPACE = 'amanshow-me';
+  var KEY = 'portfolio-visits';
+
+  fetch('https://api.countapi.xyz/hit/' + NAMESPACE + '/' + KEY)
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      el.textContent = data.value;
+    })
+    .catch(function () {
+      var count = parseInt(localStorage.getItem(KEY) || '0', 10) + 1;
+      localStorage.setItem(KEY, count);
+      el.textContent = count;
+    });
+})();
