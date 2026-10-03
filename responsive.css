@@ -1,4 +1,4 @@
-@media (max-width: 860px){
+﻿@media (max-width: 860px){
   .split{grid-template-columns:1fr;}
   .hero-split{align-items:stretch;}
   .project{grid-template-columns:1fr;}
