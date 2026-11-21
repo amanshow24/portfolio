@@ -17,7 +17,7 @@ export default function Hero() {
           <SocialLinks />
           <div className="hero-actions">
             <a
-              href="/Aman_Resume_Final.pdf"
+              href="/Aman_Resume_Update_Nov.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="button-secondary"

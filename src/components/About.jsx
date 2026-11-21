@@ -127,7 +127,7 @@ export default function About() {
                   <div className="fact-row">
                     <p className="text-xs text-muted">Beyond the screen</p>
                     <p className="mt-1 font-medium leading-6 text-primary">
-                      Chess · Running · Reading · Movies &amp; series
+                      Chess · Running · Reading · Movies &amp; Series
                     </p>
                   </div>
                 </div>
